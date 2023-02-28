@@ -15,6 +15,10 @@ namespace CMP1903M_A01_2223
             {
                 deck[i] = new Card(i);
             }
+            for (int i = 0; i < deck.Length; i++)
+            {
+                Console.WriteLine(deck[i].Display());
+            }
         }   
     }
 }
