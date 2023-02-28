@@ -14,5 +14,27 @@ namespace CMP1903M_A01_2223
         //The 'set' methods for these properties could have some validation
         public int Value { get; set; }
         public int Suit { get; set; }
+
+        public Card(int val)
+        {
+            Value = (val % 13) + 1;
+            if (val / 13 == 0)
+            {
+                Suit = 1;
+            }
+            else if (val / 13 == 1)
+            {
+                Suit = 2;
+            }
+            else if (val / 13 == 2)
+            {
+                Suit = 3;
+            }
+            else
+            {
+                Suit = 4;
+            }
+        }
     }
+    
 }
