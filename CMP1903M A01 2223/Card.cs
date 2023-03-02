@@ -14,9 +14,10 @@ namespace CMP1903M_A01_2223
         //The 'set' methods for these properties could have some validation
         public int Value { get; set; }
         public string Suit { get; set; }
-
+        // val determined in the Pack class
         public Card(int val)
         {
+            // Generating the corresponding cards to values and suits
             Value = (val % 13) + 1;
             if (val / 13 == 0)
             {
@@ -35,6 +36,7 @@ namespace CMP1903M_A01_2223
                 Suit = "Spades";
             }
         }
+        // Custom method to display Ace, Jack, Queen or King as well as making the numbers in the same format
         public string Display()
         {
             if (Value == 1)

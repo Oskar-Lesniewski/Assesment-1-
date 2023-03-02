@@ -7,18 +7,17 @@ using CMP1903M_A01_2223;
 
 namespace CMP1903M_A01_2223
 {
+    // Testing class, prints out the pack after each manipulation to make sure everything is working
     public class Testing
     {
-        public static void MainTest()
+        public static void mainTest()
         {
             Pack pack = new Pack();
             Console.WriteLine("Initial pack:");
             foreach (Card card in pack.pack)
             {
                 Console.WriteLine(card.Display());
-            }
-
-            // Shuffle the pack           
+            }          
             while (true)
             {
                 Console.WriteLine("Type in 1 for a Fisher-Yates Shuffle, 2 to Riffle Shuffle, and 3 for No Shuffle.");
@@ -55,7 +54,6 @@ namespace CMP1903M_A01_2223
             }
             Console.WriteLine("Press Enter to exit test.");
             Console.ReadLine();
-
         }
     }
                 

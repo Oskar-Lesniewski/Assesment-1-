@@ -9,13 +9,13 @@ namespace CMP1903M_A01_2223
     class Program
     {
         static void Main(string[] args)
-        {
-            Pack pack = new Pack();
-
+        {           
             // Shuffle the pack           
                 while (true)
                 {
+                    // Type of shuffle wanted
                     Console.WriteLine("Type in 1 for a Fisher-Yates Shuffle, 2 to Riffle Shuffle, and 3 for No Shuffle. (4 for testing)");
+                // Error handling
                 try
                 {
                     int shuffle = Convert.ToInt32(Console.ReadLine());
@@ -25,6 +25,7 @@ namespace CMP1903M_A01_2223
                     }
                     else
                     {
+                        // Calling specified shuffle method
                         Console.WriteLine();
                         if (shuffle == 1)
                         {
@@ -44,6 +45,7 @@ namespace CMP1903M_A01_2223
                         }
                     }
                 }
+                // Catching the error, if there is one
                 catch
                 { 
                     Console.WriteLine("Invalid input try again.");
@@ -51,6 +53,7 @@ namespace CMP1903M_A01_2223
                 }
                 break;               
             }
+            // Quitting the program
             Console.WriteLine("Press Enter to exit.");
             Console.ReadLine();
 
