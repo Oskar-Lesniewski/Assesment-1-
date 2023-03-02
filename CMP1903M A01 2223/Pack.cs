@@ -10,6 +10,7 @@ namespace CMP1903M_A01_2223
     {
         public List<Card> pack { get; set; }
 
+
         public Pack()
         {
             pack = new List<Card>();
@@ -23,6 +24,27 @@ namespace CMP1903M_A01_2223
         public static bool shuffleCardPack(int typeOfShuffle)
         {
             if (typeOfShuffle == 1)
+            {
+                Random r = new Random();
+                Pack pack = new Pack();
+                List<Card> shuffledPack = new List<Card>();
+                for (int New = pack.pack.Count(); New > 0; New--)
+                {
+                    int Old = r.Next(New);
+                    var temp = pack.pack[Old];
+                    shuffledPack.Add(temp);
+                    pack.pack.RemoveAt(Old);
+
+                }
+                pack.pack = shuffledPack;
+                foreach (Card card in pack.pack)
+                {
+                    Console.WriteLine(card.Display());
+                }
+                deal(shuffledPack);
+                return true;
+            }
+            else if (typeOfShuffle == 2)
             {
                 // Perform a perfect riffle shuffle
                 Pack pack = new Pack();
@@ -47,44 +69,59 @@ namespace CMP1903M_A01_2223
                 {
                     Console.WriteLine(card.Display());
                 }
-
+                deal(shuffledPack);
                 return true;
             }
-            else if (typeOfShuffle == 2)
-            {
-                Random r = new Random();
-                Pack pack = new Pack();
-                List<Card> shuffledCards = new List<Card>();
-                for (int i = pack.pack.Count(); i > 0; i--)
-                {
-                    int j = r.Next(i);
-                    var temp = pack.pack[j];
-                    shuffledCards.Add(temp);
-                    pack.pack.RemoveAt(j);
-
-                }
-                foreach (Card card in shuffledCards)
-                {
-                    Console.WriteLine(card.Display());
-                }
-                return true;
-            }
+            
             else if (typeOfShuffle == 3)
+            {
+                Pack pack = new Pack();
+                deal(pack.pack);
+                return false;
+            }
+            else
             {
                 return false;
             }
-            else 
-            { 
-                return false; 
+        }
+        public static Card deal(List<Card>list)
+        {           
+            var deal = list.Take(1);
+            foreach (Card card in deal)
+            {
+                Console.WriteLine("You have been Dealt - " + card.Display());
             }
-        }
-        public static Card deal()
-        {
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Would you like to be dealt more cards? Please specify how many you wish to be dealt (1-52) ");
+                    int amount = Convert.ToInt32(Console.ReadLine());
+                    if (amount < 1 || amount > 52)
+                    {
+                        throw new Exception();
+                    }
+                    else
+                    {
+                        dealCard(amount, list);
+                    }                  
+                }
+                catch
+                {
+                    Console.WriteLine("Invalid input try again.");
+                    continue;
+                }
+                break;
+            }
             return new Card(1);
-
         }
-        public static List<Card> dealCard(int amount)
+        public static List<Card> dealCard(int amount, List<Card>list)
         {
+            var deal = list.Take(amount);
+            foreach (Card card in deal)
+            {
+                Console.WriteLine("You have been Dealt - " + card.Display());
+            }
             return new List<Card>();
         }
     }

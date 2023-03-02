@@ -18,40 +18,44 @@ namespace CMP1903M_A01_2223
             }
 
             // Shuffle the pack
-            Console.WriteLine("Type in 1 to riffle shuffle, 2 for a Fisher-yates shuffle, and 3 for no shuffle.");
-            string shuffle = Console.ReadLine();
-            Console.WriteLine();
-            if (shuffle == "1")
-            {
-                bool shuffleResult = Pack.shuffleCardPack(1);
-                if (shuffleResult)
-                {
-                    Console.WriteLine("Pack shuffled successfully!");
-                }
-                else
-                {
-                    Console.WriteLine("Pack shuffle failed.");
-                }
-            }
-            else if (shuffle == "2")
-            {
-                bool shuffleResult = Pack.shuffleCardPack(2);
-                if (shuffleResult)
-                {
-                    Console.WriteLine("Pack shuffled sucessfully!");
-                }
-                else
-                {
-                    Console.WriteLine("Pack shuffle failed.");
-                }
-            }
-            else if (shuffle == "3")
-            {
-                Console.WriteLine("Pack has not been shuffled");
-            }
             
+                while (true)
+                {
+                    Console.WriteLine("Type in 1 for a Fisher-Yates Shuffle, 2 to Riffle Shuffle, and 3 for No Shuffle.");
+                try
+                {
+                    int shuffle = Convert.ToInt32(Console.ReadLine());
+                    if (shuffle < 1 || shuffle > 3)
+                    {
+                        throw new Exception();
+                    }
+                    else
+                    {
+                        Console.WriteLine();
+                        if (shuffle == 1)
+                        {
+                            Pack.shuffleCardPack(1);
+                        }
+                        else if (shuffle == 2)
+                        {
+                            Pack.shuffleCardPack(2);
+                        }
+                        else if (shuffle == 3)
+                        {
+                            Pack.shuffleCardPack(3);
+                        }
+                    }
+                }
+                catch
+                { 
+                    Console.WriteLine("Invalid input try again.");
+                    continue;
+                }
+                break;
+                
+            }
 
-
+            Console.WriteLine("Press Enter to exit.");
             Console.ReadLine();
 
         }
