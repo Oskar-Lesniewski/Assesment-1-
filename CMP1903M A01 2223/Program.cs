@@ -17,8 +17,7 @@ namespace CMP1903M_A01_2223
                 Console.WriteLine(card.Display());
             }
 
-            // Shuffle the pack
-            
+            // Shuffle the pack           
                 while (true)
                 {
                     Console.WriteLine("Type in 1 for a Fisher-Yates Shuffle, 2 to Riffle Shuffle, and 3 for No Shuffle.");
@@ -51,10 +50,8 @@ namespace CMP1903M_A01_2223
                     Console.WriteLine("Invalid input try again.");
                     continue;
                 }
-                break;
-                
+                break;               
             }
-
             Console.WriteLine("Press Enter to exit.");
             Console.ReadLine();
 
