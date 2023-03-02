@@ -20,19 +20,19 @@ namespace CMP1903M_A01_2223
             Value = (val % 13) + 1;
             if (val / 13 == 0)
             {
-                Suit = "Spades";
+                Suit = "Diamonds";
             }
             else if (val / 13 == 1)
             {
-                Suit = "Hearts";
+                Suit = "Clubs";
             }
             else if (val / 13 == 2)
             {
-                Suit = "Diamonds";
+                Suit = "Hearts";
             }
             else
             {
-                Suit = "Clubs";
+                Suit = "Spades";
             }
         }
         public string Display()
@@ -58,7 +58,7 @@ namespace CMP1903M_A01_2223
                 return Value + " of " + Suit;
             }
         }
-     
+
     }
-    
+
 }

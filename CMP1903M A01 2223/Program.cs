@@ -10,15 +10,28 @@ namespace CMP1903M_A01_2223
     {
         static void Main(string[] args)
         {
-            Card[] deck = new Card[52];
-            for (int i = 0; i < 52; i++)
+            Pack pack = new Pack();
+            Console.WriteLine("Initial pack:");
+            foreach (Card card in pack.pack)
             {
-                deck[i] = new Card(i);
+                Console.WriteLine(card.Display());
             }
-            for (int i = 0; i < deck.Length; i++)
+
+            // Shuffle the pack
+            bool shuffleResult = Pack.shuffleCardPack(1);
+            if (shuffleResult)
             {
-                Console.WriteLine(deck[i].Display());
+                Console.WriteLine("Pack shuffled successfully!");
             }
-        }   
+            else
+            {
+                Console.WriteLine("Pack shuffle failed.");
+            }
+
+
+            Console.ReadLine();
+
+        }
     }
 }
+

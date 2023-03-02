@@ -8,26 +8,66 @@ namespace CMP1903M_A01_2223
 {
     class Pack
     {
-        List<Card> pack;
+        public List<Card> pack { get; set; }
 
         public Pack()
         {
-            //Initialise the card pack here
+            pack = new List<Card>();
+
+            for (int i = 0; i < 52; i++)
+            {
+                pack.Add(new Card(i));
+            }
         }
 
         public static bool shuffleCardPack(int typeOfShuffle)
         {
-            //Shuffles the pack based on the type of shuffle
+            if (typeOfShuffle == 1)
+            {
+                // Perform a perfect riffle shuffle
+                Pack pack = new Pack();
+                int half = pack.pack.Count / 2;
+                List<Card> topHalf = pack.pack.GetRange(0, half);
+                List<Card> bottomHalf = pack.pack.GetRange(half, half);
+                List<Card> shuffledPack = new List<Card>();
 
+                for (int i = 0; i < half; i++) 
+                {
+                    shuffledPack.Add(topHalf[i]);
+                    shuffledPack.Add(bottomHalf[i]);
+                }
+
+                // Add any remaining cards to the end of the shuffledPack
+                if (pack.pack.Count % 2 != 0)
+                {
+                    shuffledPack.Add(pack.pack[pack.pack.Count - 1]);
+                }
+
+                // Replace the pack with the shuffledPack
+                pack.pack = shuffledPack;
+
+                Console.WriteLine("Pack was shuffled:");
+                foreach (Card card in pack.pack)
+                {
+                    Console.WriteLine(card.Display());
+                }
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         public static Card deal()
         {
-            //Deals one card
+            return new Card(1);
 
         }
         public static List<Card> dealCard(int amount)
         {
-            //Deals the number of cards specified by 'amount'
+            return new List<Card>();
         }
     }
+
 }
