@@ -18,15 +18,38 @@ namespace CMP1903M_A01_2223
             }
 
             // Shuffle the pack
-            bool shuffleResult = Pack.shuffleCardPack(1);
-            if (shuffleResult)
+            Console.WriteLine("Type in 1 to riffle shuffle, 2 for a Fisher-yates shuffle, and 3 for no shuffle.");
+            string shuffle = Console.ReadLine();
+            Console.WriteLine();
+            if (shuffle == "1")
             {
-                Console.WriteLine("Pack shuffled successfully!");
+                bool shuffleResult = Pack.shuffleCardPack(1);
+                if (shuffleResult)
+                {
+                    Console.WriteLine("Pack shuffled successfully!");
+                }
+                else
+                {
+                    Console.WriteLine("Pack shuffle failed.");
+                }
             }
-            else
+            else if (shuffle == "2")
             {
-                Console.WriteLine("Pack shuffle failed.");
+                bool shuffleResult = Pack.shuffleCardPack(2);
+                if (shuffleResult)
+                {
+                    Console.WriteLine("Pack shuffled sucessfully!");
+                }
+                else
+                {
+                    Console.WriteLine("Pack shuffle failed.");
+                }
             }
+            else if (shuffle == "3")
+            {
+                Console.WriteLine("Pack has not been shuffled");
+            }
+            
 
 
             Console.ReadLine();

@@ -37,14 +37,10 @@ namespace CMP1903M_A01_2223
                     shuffledPack.Add(bottomHalf[i]);
                 }
 
-                // Add any remaining cards to the end of the shuffledPack
-                if (pack.pack.Count % 2 != 0)
-                {
-                    shuffledPack.Add(pack.pack[pack.pack.Count - 1]);
-                }
 
                 // Replace the pack with the shuffledPack
                 pack.pack = shuffledPack;
+                shuffledPack.Reverse();
 
                 Console.WriteLine("Pack was shuffled:");
                 foreach (Card card in pack.pack)
@@ -54,9 +50,32 @@ namespace CMP1903M_A01_2223
 
                 return true;
             }
-            else
+            else if (typeOfShuffle == 2)
+            {
+                Random r = new Random();
+                Pack pack = new Pack();
+                List<Card> shuffledCards = new List<Card>();
+                for (int i = pack.pack.Count(); i > 0; i--)
+                {
+                    int j = r.Next(i);
+                    var temp = pack.pack[j];
+                    shuffledCards.Add(temp);
+                    pack.pack.RemoveAt(j);
+
+                }
+                foreach (Card card in shuffledCards)
+                {
+                    Console.WriteLine(card.Display());
+                }
+                return true;
+            }
+            else if (typeOfShuffle == 3)
             {
                 return false;
+            }
+            else 
+            { 
+                return false; 
             }
         }
         public static Card deal()
