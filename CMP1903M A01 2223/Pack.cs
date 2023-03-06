@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -50,21 +51,40 @@ namespace CMP1903M_A01_2223
             {
                 // Performing a riffle shuffle on the original set of cards
                 Pack pack = new Pack();
-                int half = pack.pack.Count / 2;
-                List<Card> topHalf = pack.pack.GetRange(0, half);
-                List<Card> bottomHalf = pack.pack.GetRange(half, half);
-                List<Card> shuffledPack = new List<Card>();
-
-                for (int i = 0; i < half; i++) 
+                Random amount = new Random();
+                Random side = new Random();
+                int y = amount.Next(2, 24);
+                for (int j = 0; j <= y; j++)
                 {
-                    shuffledPack.Add(topHalf[i]);
-                    shuffledPack.Add(bottomHalf[i]);
+                    int half = pack.pack.Count / 2;
+                    List<Card> topHalf = pack.pack.GetRange(0, half);
+                    List<Card> bottomHalf = pack.pack.GetRange(half, half);
+                    List<Card> shuffledPack = new List<Card>();
+                    int lor = side.Next(1, 2);
+                    if (lor == 1)
+                    {
+                        for (int i = 0; i < half; i++)
+                        {
+                            shuffledPack.Add(topHalf[i]);
+                            shuffledPack.Add(bottomHalf[i]);
+                        }
+                    }
+                    else if (lor == 2)
+                    {
+                        for (int i = 0; i < half; i++)
+                        {
+                            shuffledPack.Add(bottomHalf[i]);
+                            shuffledPack.Add(topHalf[i]);
+                        }
+                    }
+                    pack.pack = shuffledPack;
+                    if (j == y)
+                    {
+                        Console.WriteLine("Pack was shuffled " + j + " times.");
+                        deal(shuffledPack);
+                    }
                 }
-                pack.pack = shuffledPack;
-                shuffledPack.Reverse();
-                Console.WriteLine("Pack was shuffled.");
                 // Dealing a card, calling the deal method
-                deal(shuffledPack);
                 return true;
             }
             // No shuffle
@@ -94,7 +114,7 @@ namespace CMP1903M_A01_2223
             {
                 try
                 {
-                    Console.WriteLine("Would you like to be dealt more cards? Please specify how many you wish to be dealt (1-52) ");
+                    Console.WriteLine("Would you like to be dealt more cards? Please specify how many you wish to be dealt (0-52) ");
                     int amount = Convert.ToInt32(Console.ReadLine());
                     if (amount < 0 || amount > 52)
                     {
@@ -113,10 +133,10 @@ namespace CMP1903M_A01_2223
                 }
                 break;
             }
-            return new Card(1);
+            return null;
         }
         // dealCard method
-        public static List<Card> dealCard(int amount, List<Card>list)
+        private static List<Card> dealCard(int amount, List<Card>list)
         {
             // Deals the specified amount of cards the user wanted
             var deal = list.Take(amount);
@@ -124,7 +144,7 @@ namespace CMP1903M_A01_2223
             {
                 Console.WriteLine("You have been Dealt - " + card.Display());
             }
-            return new List<Card>();
+            return null;
         }
         // Testing purpouses only, same funtionality just displays the pack after each manipulation to make sure it is doing what it should
         public static bool shuffleCardPackTest(int typeOfShuffle)
@@ -154,23 +174,44 @@ namespace CMP1903M_A01_2223
             else if (typeOfShuffle == 2)
             {
                 Pack pack = new Pack();
-                int half = pack.pack.Count / 2;
-                List<Card> topHalf = pack.pack.GetRange(0, half);
-                List<Card> bottomHalf = pack.pack.GetRange(half, half);
-                List<Card> shuffledPack = new List<Card>();
-                for (int i = 0; i < half; i++)
+                Random amount = new Random();
+                Random side = new Random();
+                int y = amount.Next(6, 12);
+                for (int j = 0; j <= y; j++)
                 {
-                    shuffledPack.Add(topHalf[i]);
-                    shuffledPack.Add(bottomHalf[i]);
+                    int half = pack.pack.Count / 2;
+                    List<Card> topHalf = pack.pack.GetRange(0, half);
+                    List<Card> bottomHalf = pack.pack.GetRange(half, half);
+                    List<Card> shuffledPack = new List<Card>();
+                    int lor = side.Next(1, 2);
+                    if (lor == 1)
+                    {
+                        for (int i = 0; i < half; i++)
+                        {
+                            shuffledPack.Add(topHalf[i]);
+                            shuffledPack.Add(bottomHalf[i]);
+                        }
+                    }
+                    else if (lor == 2)
+                    {
+                        for (int i = 0; i < half; i++)
+                        {
+                            shuffledPack.Add(bottomHalf[i]);
+                            shuffledPack.Add(topHalf[i]);
+                        }
+                    }
+                    pack.pack = shuffledPack;
+                    shuffledPack.Reverse();
+                    Console.WriteLine("Pack was shuffled.");
+                    foreach (Card card in shuffledPack)
+                    {
+                        Console.WriteLine(card.Display());
+                    }
+                    if (j == y)
+                    {
+                        dealTest(shuffledPack);
+                    }
                 }
-                pack.pack = shuffledPack;
-                shuffledPack.Reverse();
-                Console.WriteLine("Pack was shuffled:");
-                foreach (Card card in pack.pack)
-                {
-                    Console.WriteLine(card.Display());
-                }
-                dealTest(shuffledPack);
                 return true;
             }
             else if (typeOfShuffle == 3)
@@ -195,7 +236,7 @@ namespace CMP1903M_A01_2223
             {
                 try
                 {
-                    Console.WriteLine("Would you like to be dealt more cards? Please specify how many you wish to be dealt (1-52) ");
+                    Console.WriteLine("Would you like to be dealt more cards? Please specify how many you wish to be dealt (0-52) ");
                     int amount = Convert.ToInt32(Console.ReadLine());
                     if (amount < 0 || amount > 52)
                     {
@@ -213,16 +254,16 @@ namespace CMP1903M_A01_2223
                 }
                 break;
             }
-            return new Card(1);
+            return null;
         }
-        public static List<Card> dealCardTest(int amount, List<Card> list)
+        private static List<Card> dealCardTest(int amount, List<Card> list)
         {
             var deal = list.Take(amount);
             foreach (Card card in deal)
             {
                 Console.WriteLine("You have been Dealt - " + card.Display());
             }
-            return new List<Card>();
+            return null;
         }
     }
 }

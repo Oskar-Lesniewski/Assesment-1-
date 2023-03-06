@@ -41,7 +41,7 @@ namespace CMP1903M_A01_2223
                         }
                         else if (shuffle == 4)
                         {
-                            Testing.MainTest();
+                            Testing.mainTest();
                         }
                     }
                 }

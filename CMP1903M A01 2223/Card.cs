@@ -36,7 +36,7 @@ namespace CMP1903M_A01_2223
                 Suit = "Spades";
             }
         }
-        // Custom method to display Ace, Jack, Queen or King as well as making the numbers in the same format
+        // Custom added method to display Ace, Jack, Queen or King as well as making the numbers in the same format
         public string Display()
         {
             if (Value == 1)
